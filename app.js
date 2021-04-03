@@ -13,15 +13,15 @@ function updateHomeworkList(app, toast) {
         date: new Date()
     }
     app.request.get("data/homework_list.txt").then(res => {
-        let update = res.data.match(/=========================[\r\n]+Update: .+/)[0].replace("=========================[\r\n]+Update: ", "");
+        let update = res.data.match(/=========================(\r\n|\n)Update: .+/)[0].replace(/=========================(\r\n|\n)Update: /, "");
         homeworkList.update = update.slice(-1);
         homeworkList.date.setFullYear("20" + update.slice(0, 2), ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].indexOf(update.slice(2, 5)), update.slice(5, 7));
         let tmr = new Date(homeworkList.date.getTime() + 1000*60*60*24);
         let date = `${tmr.getDate()}/${tmr.getMonth() + 1}`
         { // Today's Homework
-            let subjects = res.data.match(/=========================[\r\n]+Today's Homework:[\s\S]+?(?=-------------------------)-------------------------/)[0].replace("=========================[\r\n]+Today's Homework:[\r\n]+[\r\n]+", "").match(/^\w+:[\r\n]+[\s\S]+?(?=[\r\n]+\w+:|[\r\n]+-------------------------)/gm);
+            let subjects = res.data.match(/=========================(\r\n|\n)Today's Homework:[\s\S]+?(?=-------------------------)-------------------------/)[0].replace(/=========================(\r\n|\n)Today's Homework:(\r\n|\n)(\r\n|\n)/, "").match(/^\w+:(\r\n|\n)[\s\S]+?(?=(\r\n|\n)\w+:|(\r\n|\n)-------------------------)/gm);
             for (let subject of subjects ?? []) {
-                let name = subject.match(/^\w+(?=:[\r\n]+)/)[0];
+                let name = subject.match(/^\w+(?=:(\r\n|\n))/)[0];
                 let items = subject.match(/^\d+. .+/gm);
                 if (!homeworkList.homework[name]) {
                     homeworkList.homework[name] = [];
@@ -33,7 +33,8 @@ function updateHomeworkList(app, toast) {
                     });
                 }
             }
-            let tests = res.data.match(/-------------------------[\r\n]+Dictation \/Test:[\r\n]+[\r\n]+[\s\S]+?(?=[\r\n]+[\r\n]+=========================|[\r\n]+=========================)/)[0].replace("-------------------------[\r\n]+Dictation /Test:[\r\n]+[\r\n]+", "").match(/.+/g);
+            let tests = res.data.match(/-------------------------(\r\n|\n)Dictation \/Test:(\r\n|\n)(\r\n|\n)[\s\S]+?(?=(\r\n|\n)(\r\n|\n)=========================|(\r\n|\n)=========================)/)[0].replace(/-------------------------(\r\n|\n)Dictation \/Test:(\r\n|\n)(\r\n|\n)/, "").match(/.+/g);
+            console.log(tests)
             for (let test of tests ?? []) {
                 homeworkList.tests.push({
                     label: test,
@@ -42,12 +43,12 @@ function updateHomeworkList(app, toast) {
             }
         }
         {
-            let days = res.data.match(/=========================[\r\n]+Coming Homework:[\s\S]+?(?=-------------------------)-------------------------/)[0].replace("=========================[\r\n]+Homework \(Next 7 Days\):[\r\n]+[\r\n]+", "").match(/^[\d-]{1,2}\/[\d-]{1,2}[\r\n]+[\s\S]+?(?=[\r\n]+[\d-]{1,2}\/[\d-]{1,2}|[\r\n]+-------------------------)[\r\n]+/gm);
+            let days = res.data.match(/=========================(\r\n|\n)Coming Homework:[\s\S]+?(?=-------------------------)-------------------------/)[0].replace(/=========================(\r\n|\n)Homework \(Next 7 Days\):(\r\n|\n)(\r\n|\n)/, "").match(/^[\d-]{1,2}\/[\d-]{1,2}(\r\n|\n)[\s\S]+?(?=(\r\n|\n)[\d-]{1,2}\/[\d-]{1,2}|(\r\n|\n)-------------------------)(\r\n|\n)/gm);
             for (let day of days ?? []) {
                 let date = day.match(/^[\d-]{1,2}\/[\d-]{1,2}/)[0];
-                let subjects = day.match(/\w+:[\r\n]+[\s\S]+?(?=[\r\n]+\w+:|[\r\n]+$)/g);
+                let subjects = day.match(/\w+:(\r\n|\n)[\s\S]+?(?=(\r\n|\n)\w+:|(\r\n|\n)$)/g);
                 for (let subject of subjects ?? []) {
-                    let name = subject.match(/^\w+(?=:[\r\n]+)/)[0];
+                    let name = subject.match(/^\w+(?=:(\r\n|\n))/)[0];
                     let items = subject.match(/^\d+. .+/gm);
                     if (!homeworkList.homework[name]) {
                         homeworkList.homework[name] = [];
@@ -62,7 +63,7 @@ function updateHomeworkList(app, toast) {
             }
         }
         {
-            let days = res.data.match(/-------------------------[\r\n]+Coming Dictation \/Test:[\s\S]+?(?==========================)=========================/)[0].replace("-------------------------[\r\n]+Dictation /Test[\r\n]+(Next 7 Days):", "").match(/^[\d-]{1,2}\/[\d-]{1,2}[\r\n]+[\s\S]+?(?=[\r\n]+[\d-]{1,2}\/[\d-]{1,2}|[\r\n]+=========================)[\r\n]+/gm);
+            let days = res.data.match(/-------------------------(\r\n|\n)Coming Dictation \/Test:[\s\S]+?(?==========================)=========================/)[0].replace(/-------------------------(\r\n|\n)Dictation \/Test(\r\n|\n)(Next 7 Days):/, "").match(/^[\d-]{1,2}\/[\d-]{1,2}(\r\n|\n)[\s\S]+?(?=(\r\n|\n)[\d-]{1,2}\/[\d-]{1,2}|(\r\n|\n)=========================)(\r\n|\n)/gm);
             for (let day of days ?? []) {
                 let date = day.match(/^[\d-]{1,2}\/[\d-]{1,2}/)[0];
                 let tests = day.match(/.+/g).slice(1);
