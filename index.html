@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="theme-color" content="#2196f3">
+        <title>Homework List</title>
+        <link rel="apple-touch-startup-image" href="src/startup.png">
+        <link rel="apple-touch-icon" href="src/icon.png">
+        <link rel="icon" type="image/png" href="src/favicon.png"/>
+        <link rel="stylesheet" href="https://framework7.io/packages/core/framework7-bundle.min.css">
+        <link rel="stylesheet" href="https://framework7.io/css/framework7-icons.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="view view-main ios-edges">
+                <div data-name="home" class="page">
+                    <div class="navbar navbar-large">
+                        <div class="navbar-bg"></div>
+                        <div class="navbar-inner">
+                            <div class="title">Homework List</div>
+                            <div class="title-large">
+                                <div class="title-large-text">Homework List</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="toolbar tabbar tabbar-labels toolbar-bottom">
+                        <div class="toolbar-inner">
+                            <a href="#homework" class="tab-link tab-link-active">
+                                <i class="f7-icons">list_bullet</i>
+                                <span class="tabbar-label">Homework</span>
+                            </a>
+                            <a href="#timetable" class="tab-link">
+                                <i class="f7-icons">table</i>
+                                <span class="tabbar-label">Timetable</span>
+                            </a>                          
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="page-content tab tab-active ptr-content" data-ptr-mousewheel="true" id="homework" @ptr:refresh="alert('e')">
+                            <div class="ptr-preloader">
+                                <div class="preloader"></div>
+                                <div class="ptr-arrow"></div>
+                            </div>
+                            <div class="block-title">Homework</div>
+                            <div class="list">
+                                <ul name="homework">
+                                </ul>
+                            </div>
+                            <div class="block-title">Dictations / Tests</div>
+                            <div class="list">
+                                <ul name="tests">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="page-content tab" id="timetable">
+                            <div class="data-table card">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td class="label-cell">MON<br>zoom</td>
+                                            <td class="label-cell">TUE<br>P.M.</td>
+                                            <td class="label-cell">WED<br>zoom</td>
+                                            <td class="label-cell">THU<br>A.M.</td>
+                                            <td class="label-cell">FRI<br>P.M.</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">CHIN</td>
+                                            <td class="label-cell">ENG</td>
+                                            <td class="label-cell">CHEM</td>
+                                            <td class="label-cell">CHIN</td>
+                                            <td class="label-cell">ENG</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">MATH<br>M2</td>
+                                            <td class="label-cell">MATH</td>
+                                            <td class="label-cell">CHIN</td>
+                                            <td class="label-cell">ENG</td>
+                                            <td class="label-cell">BIO</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">BIO</td>
+                                            <td class="label-cell">E&RE<br>PE</td>
+                                            <td class="label-cell">ENG</td>
+                                            <td class="label-cell">MATH<br>M2</td>
+                                            <td class="label-cell">CHIN</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell"></td>
+                                            <td class="label-cell"></td>
+                                            <td class="label-cell">RECESS</td>
+                                            <td class="label-cell"></td>
+                                            <td class="label-cell"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">ENG</td>
+                                            <td class="label-cell">BIO</td>
+                                            <td class="label-cell">BIO</td>
+                                            <td class="label-cell">LIBS</td>
+                                            <td class="label-cell">LIBS</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">LIBS</td>
+                                            <td class="label-cell">CHEM</td>
+                                            <td class="label-cell">MATH</td>
+                                            <td class="label-cell">CHEM</td>
+                                            <td class="label-cell">GEOG</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">GEOG</td>
+                                            <td class="label-cell">MCED</td>
+                                            <td class="label-cell">GEOG</td>
+                                            <td class="label-cell">GEOG</td>
+                                            <td class="label-cell">CHEM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://framework7.io/packages/core/framework7-bundle.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
