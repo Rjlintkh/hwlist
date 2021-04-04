@@ -60,12 +60,22 @@ M2:
 BIO:
 1. Ch. 6 (Q. 1-10, 14-16, 18, 20-22, 93-2A, 04-1A, 18-8)
 
+HIS:
+1. WB (Q. 30C, 33A-B, 35A-C)
+
+ECON:
+1. Ch. 12 (MCQ. 1-2, 4-17, SQ. 2, 3, LQ. 1)
+
 14/4
 GEO:
 1. CP2 HW2 DBQ
 2. CP2.1-2.3 Note
 3. Quiz 2.2 corr
 4. CP2 HW1 DBQ corr
+
+20/4
+ECON:
+1. REVEX Ch. 1-6
 
 --/--
 RE:
@@ -80,5 +90,8 @@ GEO QUIZ
 16/4
 CHI QUIZ
 
+20/4
+ENG GR QUIZ
+
 =========================
-Update: 21APR0115002
+Update: 21APR0422341
