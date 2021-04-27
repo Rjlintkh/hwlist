@@ -63,7 +63,7 @@ function updateHomeworkList(app, toast) {
             }
         }
         {
-            let days = res.data.match(/-------------------------(\r\n|\n)Coming Dictation \/Test:[\s\S]+?(?==========================)=========================/)[0].replace(/-------------------------(\r\n|\n)Dictation \/Test(\r\n|\n)(Next 7 Days):/, "").match(/^[\d-]{1,2}\/[\d-]{1,2}(\r\n|\n)[\s\S]+?(?=(\r\n|\n)[\d-]{1,2}\/[\d-]{1,2}|(\r\n|\n)=========================)(\r\n|\n)/gm);
+            let days = res.data.match(/-------------------------(\r\n|\n)Coming Dictation \/(Test|Quiz):[\s\S]+?(?==========================)=========================/)[0].replace(/-------------------------(\r\n|\n)Dictation \/Test(\r\n|\n)(Next 7 Days):/, "").match(/^[\d-]{1,2}\/[\d-]{1,2}(\r\n|\n)[\s\S]+?(?=(\r\n|\n)[\d-]{1,2}\/[\d-]{1,2}|(\r\n|\n)=========================)(\r\n|\n)/gm);
             for (let day of days ?? []) {
                 let date = day.match(/^[\d-]{1,2}\/[\d-]{1,2}/)[0];
                 let tests = day.match(/.+/g).slice(1);
